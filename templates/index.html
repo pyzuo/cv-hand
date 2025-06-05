@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>手势识别系统</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>基于深度学习的手势识别</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="file" id="file-input" accept="image/*" required>
+        <button type="submit">上传并识别</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        const form = document.getElementById('upload-form');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('file-input');
+            if (!fileInput.files.length) return;
+            const data = new FormData();
+            data.append('file', fileInput.files[0]);
+            const res = await fetch('/predict', {
+                method: 'POST',
+                body: data
+            });
+            const result = await res.json();
+            document.getElementById('result').innerText = result.result || result.error;
+        }
+    </script>
+</body>
+</html>

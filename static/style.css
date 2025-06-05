@@ -1,0 +1,15 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f1f1f1;
+    padding: 40px;
+}
+h1 {
+    color: #333;
+}
+form {
+    margin-bottom: 20px;
+}
+#result {
+    margin-top: 10px;
+    font-weight: bold;
+}
